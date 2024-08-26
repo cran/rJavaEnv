@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.56">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quick Start Guide: Java Setup for ‘R’ Projects</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+
+
+
+
+<style type="text/css">body {background-color: #fff;margin: 1em auto;max-width: 700px;overflow: visible;padding-left: 2em;padding-right: 2em;font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.35;}table {margin: 1em auto;border-width: 1px;border-color: #DDDDDD;border-style: outset;border-collapse: collapse;}table th {border-width: 2px;padding: 5px;border-style: inset;}table td {border-width: 1px;border-style: inset;line-height: 18px;padding: 5px 5px;}table, table th, table td {border-left-style: none;border-right-style: none;}table thead, table tr.even {background-color: #f7f7f7;}p {margin: 0.5em 0;}blockquote {background-color: #f6f6f6;padding: 0.25em 0.75em;}hr {border-style: solid;border: none;border-top: 1px solid #777;margin: 28px 0;}dl {margin-left: 0;}dl dd {margin-bottom: 13px;margin-left: 13px;}dl dt {font-weight: bold;}ul {margin-top: 0;}ul li {list-style: circle outside;}ul ul {margin-bottom: 0;}pre, code {background-color: #f7f7f7;border-radius: 3px;color: #333;white-space: pre-wrap; }pre {border-radius: 3px;margin: 5px 0px 10px 0px;padding: 10px;}pre:not([class]) {background-color: #f7f7f7;}code {font-family: Consolas, Monaco, 'Courier New', monospace;font-size: 85%;}p > code, li > code {padding: 2px 0px;}div.figure {text-align: center;}img {background-color: #FFFFFF;padding: 2px;border: 1px solid #DDDDDD;border-radius: 3px;border: 1px solid #CCCCCC;margin: 0 5px;}h1 {margin-top: 0;font-size: 35px;line-height: 40px;}h2 {border-bottom: 4px solid #f7f7f7;padding-top: 10px;padding-bottom: 2px;font-size: 145%;}h3 {border-bottom: 2px solid #f7f7f7;padding-top: 10px;font-size: 120%;}h4 {border-bottom: 1px solid #f7f7f7;margin-left: 8px;font-size: 105%;}h5, h6 {border-bottom: 1px solid #ccc;font-size: 105%;}a {color: #0033dd;text-decoration: none;}a:hover {color: #6666ff; }a:visited {color: #800080; }a:visited:hover {color: #BB00BB; }a[href^="http:"] {text-decoration: underline; }a[href^="https:"] {text-decoration: underline; }</style>
+</head>
+
+<body>
+
+
+<header id="title-block-header">
+<h1 class="title">Quick Start Guide: <code>Java</code> Setup for ‘R’ Projects</h1>
+
+</header>
+
+
+<p>This guide will walk you through downloading, installing, and managing <code>Java</code> environments for your R projects using the <code>rJavaEnv</code> package. We’ll cover setting up the environment, un-setting it, managing distributions, installing <code>Java</code>, and checking <code>Java</code> versions.</p>
+<h3 id="quickly-download-and-install-java">1. Quickly Download and Install Java</h3>
+<h4 id="install-rjavaenv"><strong>Install <code>rJavaEnv</code></strong></h4>
+<p>Install <code>rJavaEnv</code> from CRAN (once available):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rJavaEnv&quot;</span>)</span></code></pre></div>
+</div>
+<p>Or install the latest version of <code>rJavaEnv</code> from R universe:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rJavaEnv&#39;</span>,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&#39;https://e-kotov.r-universe.dev&#39;</span>, <span class="st">&#39;https://cloud.r-project.org&#39;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<h4 id="quick-install-java-jdk"><strong>Quick Install <code>Java</code> JDK</strong></h4>
+<p>Assume your project directory is currently in a temporary directory. Feel free to skip that, if you are already working in a desired project directory where you would like to install <code>Java</code>. In the example outputs below you will see paths that point to a temporary directory, but in a real project you would see your project directory instead.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>project_dir <span class="ot">&lt;-</span> <span class="fu">tempdir</span>()</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(project_dir)</span></code></pre></div>
+</div>
+<p>The first time you run any function that requires writing into your home space, you will be provided with a prompt warning you that the package may write to the package cache folder in your home directory, to your current project directory, as well as to the .Rprofile file in your project directory (or any directory you specify).</p>
+<p>To quickly install <code>Java</code> JDK 21 (which is also default, if not specified) in your current project directory and set the environment:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJavaEnv)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">java_quick_install</span>(<span class="at">version =</span> <span class="dv">21</span>)</span></code></pre></div>
+</div>
+<p><strong>On first run, you will be asked for consent to change your environment variables and <code>.Rprofile</code> file in the current working/project directory. This only happens once.</strong></p>
+<p>The command above:</p>
+<ul>
+<li><p>Downloads the <code>Java</code> distribution compatible with your OS and architecture.</p></li>
+<li><p>Installs <code>Java</code> in a cache directory.</p></li>
+<li><p>Sets the <code>JAVA_HOME</code> and <code>PATH</code> environment variables for the current session and project/working directory, so that any <code>Java</code>/<code>rJava</code> dependent <code>R</code> package can use this requested <code>Java</code> version.</p></li>
+</ul>
+<p>Example expected output (on a Windows machine):</p>
+<pre><code>Consent has been granted and recorded.
+Detected platform: windows
+Detected architecture: x64
+You can change the platform and architecture by specifying the `platform` and `arch` arguments.
+Downloading Java 21 (Corretto) for windows x64 to C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/distrib/amazon-corretto-21-x64-windows-jdk.zip
+ [100%] Downloaded 201696048 bytes...
+Download completed.
+MD5 checksum verified.
+v Current R Session: JAVA_HOME and PATH set to C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/installed/windows/x64/21
+v Current R Project/Working Directory: JAVA_HOME and PATH set to &#39;C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/installed/windows/x64/21&#39; in .Rprofile at &#39;C:/Users/user_name/AppData/Local/Temp/75/
+RtmpuoG3xJ&#39;
+Java 21 (amazon-corretto-21-x64-windows-jdk.zip) for windows x64 installed at C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/installed/windows/x64/21 and symlinked to
+C:/Users/user_name/AppData/Local/Temp/75/RtmpuoG3xJ/rjavaenv/windows/x64/21</code></pre>
+<p>That is it. You can now use your <code>Java</code>/<code>rJava</code>-dependent <code>R</code> package.</p>
+<h3 id="check-java-installation">2. <strong>Check <code>Java</code> installation</strong></h3>
+<p>You can check if the newly installed <code>Java</code> will be correctly picked up by the <code>Java</code>/<code>rJava</code>-dependent <code>R</code> package that you are going to use with.</p>
+<p>For <code>R</code> packages that use <code>Java</code> via <code>rJava</code>-dependency (e.g. <a href="https://github.com/ipeaGIT/r5r" target="_blank"><code>r5r</code></a>), you can use the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_check_version_rjava</span>()</span></code></pre></div>
+</div>
+<p>Example expected output (on a Windows machine):</p>
+<pre><code>Using current session&#39;s JAVA_HOME: C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/installed/windows/x64/21
+With the user-specified JAVA_HOME rJava and other rJava/Java-based packages will use Java version: &quot;21.0.4&quot;
+[1] TRUE</code></pre>
+<p>For <code>R</code> packages that use <code>Java</code> from command line (e.g. <a href="https://github.com/ropensci/opentripplanner" target="_blank"><code>opentripplanner</code></a>), you can use the following command:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_check_version_cmd</span>()</span></code></pre></div>
+</div>
+<p>Example expected output (on a Windows machine):</p>
+<pre><code>java_check_version_cmd()
+JAVA_HOME: C:\Users\user_name\AppData\Local/R/cache/R/rJavaEnv/installed/windows/x64/21
+Java path: /c/Users/user_name/AppData/Local/R/cache/R/rJavaEnv/installed/windows/x64/21/bin/java
+Java version: &quot;openjdk version \&quot;21.0.4\&quot; 2024-07-16 LTS OpenJDK Runtime Environment Corretto-21.0.4.7.1 (build 21.0.4+7-LTS) OpenJDK 64-Bit Server VM Corretto-21.0.4.7.1 (build 21.0.4+7-LTS,
+mixed mode, sharing)&quot;
+[1] TRUE</code></pre>
+<h4 id="note-linux">Note for Linux users</h4>
+<p>Note: if you are on a Linux system that did not have any <code>Java</code> version previoulsy installed and you are not using pre-build <code>R</code> package binaries (for example from ‘Posit Package Manager’) and instead install all <code>R</code> packages from source, after this step you may have to quit <code>R</code>, <a href="https://solutions.posit.co/envs-pkgs/using-rjava/#reconfigure-r" target="_blank">follow these steps</a> to set configure <code>Java</code> for <code>R</code>, and only then install <code>rJava</code>, as otherwise <code>rJava</code> cannot be built from source.*</p>
+<h3 id="return-things-to-their-original-state">3. Return things to their original state</h3>
+<h4 id="unset-java">Unset <code>Java</code></h4>
+<p>Run the following code to unset the <code>Java</code> for the current working directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_env_unset</span>()</span></code></pre></div>
+</div>
+<p>Example expected output (on a Windows machine):</p>
+<pre><code>Removed JAVA_HOME settings from .Rprofile in &#39;C:/Users/user_name/AppData/Local/Temp/75/RtmpuoG3xJ/.Rprofile&#39;</code></pre>
+<p>Now restart the current <code>R</code> session so that <code>R</code> picks up the system <code>Java</code> (or no <code>Java</code>, if it is not installed in the system).</p>
+<h4 id="delete-java-from-the-project-directory">Delete <code>Java</code> from the project directory</h4>
+<p>The line below clears all <code>Java</code> installations in the project directory:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_clear</span>(<span class="st">&quot;project&quot;</span>, <span class="at">delete_all =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<p>Example expected output:</p>
+<pre><code>All Java symlinks in the project have been cleared.</code></pre>
+
+
+
+
+
+</body></html>
