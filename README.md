@@ -6,104 +6,61 @@
 
 <!-- badges: start -->
 
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
+[![Project Status:
+Active](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"
 target="_blank"><img
 src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg"
 alt="Lifecycle: stable" /></a>
 <a href="https://CRAN.R-project.org/package=rJavaEnv"
-target="_blank"><img
-src="https://www.r-pkg.org/badges/version/rJavaEnv.png"
+target="_blank"><img src="https://www.r-pkg.org/badges/version/rJavaEnv"
 alt="CRAN status" /></a>
+<a href="https://CRAN.R-project.org/package=rJavaEnv"
+target="_blank"><img
+src="https://cranlogs.r-pkg.org/badges/grand-total/rJavaEnv?color=blue"
+alt="CRAN/METACRAN Total downloads" /></a>
+<a href="https://CRAN.R-project.org/package=rJavaEnv"
+target="_blank"><img
+src="https://cranlogs.r-pkg.org/badges/rJavaEnv?color=blue"
+alt="CRAN/METACRAN Downloads per month" /></a>
 [![R-CMD-check](https://github.com/e-kotov/rJavaEnv/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/e-kotov/rJavaEnv/actions/workflows/R-CMD-check.yaml)
-[![pkgcheck](https://github.com/e-kotov/rJavaEnv/workflows/pkgcheck/badge.svg)](https://github.com/e-kotov/rJavaEnv/actions?query=workflow%3Apkgcheck)
+<!-- [![pkgcheck](https://github.com/e-kotov/rJavaEnv/workflows/pkgcheck/badge.svg)](https://github.com/e-kotov/rJavaEnv/actions?query=workflow%3Apkgcheck) -->
 [![codecov](https://codecov.io/github/e-kotov/rJavaEnv/graph/badge.svg?token=2UKGZVNO5V)](https://app.codecov.io/github/e-kotov/rJavaEnv)
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11403009.svg)](https://dx.doi.org/10.5281/zenodo.11403009)
+[![DOI](https://zenodo.org/badge/DOI/10.32614/CRAN.package.rJavaEnv.svg)](https://doi.org/10.32614/CRAN.package.rJavaEnv)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.11403009.svg)](https://doi.org/10.5281/zenodo.11403009)
 
 <!-- badges: end -->
 
-The `{rJavaEnv}` package addresses common issues with `Java` environment
-management in `R` for users of `Java`/`{rJava}`-dependent `R` packages
-such as `{r5r}`, `{opentripplanner}`, `{xlsx}`, `{openNLP}`, `{rWeka}`,
-`{RJDBC}`, `{tabulapdf}`, and many more. It resolves common problems
-like `Java` not found, `Java` version conflicts, missing `Java`
+Quickly install `Java Development Kit (JDK)` without administrative
+privileges and set environment variables in current R session or project
+to solve common issues with ‘Java’ environment management in ‘R’.
+Recommended to users of `Java`/`{rJava}`-dependent `R` packages such as
+`{r5r}`, `{opentripplanner}`, `{xlsx}`, `{openNLP}`, `{rWeka}`,
+`{RJDBC}`, `{tabulapdf}`, and many more. `{rJavaEnv}` prevents common
+problems like `Java` not found, `Java` version conflicts, missing `Java`
 installations, and the inability to install `Java` due to lack of
-administrative privileges. `rJavaEnv` automates the download,
-installation, and setup of the `Java Development Kit` (`JDK`) on a
-per-project basis by setting the relevant `JAVA_HOME` in the current `R`
-session or the current working directory (via `.Rprofile`, with the
-user’s consent). Similar to what `renv` does for `R` packages,
-`rJavaEnv` allows different `Java` versions to be used across different
-projects, but can also be configured to allow multiple versions within
-the same project (e.g. with the help of `{targets}` package). **Note:
-there are a few extra steps for ‘Linux’ users, who don’t have any ‘Java’
-previously installed in their system, and who prefer package
-installation from source, rather then installing binaries from ‘Posit
-Package Manager’. See
+administrative privileges. `{rJavaEnv}` automates the download,
+installation, and setup of the `Java` on a per-project basis by setting
+the relevant `JAVA_HOME` in the current `R` session or the current
+working directory (via `.Rprofile`, with the user’s consent). Similar to
+what `{renv}` does for `R` packages, `{rJavaEnv}` allows different
+`Java` versions to be used across different projects, but can also be
+configured to allow multiple versions within the same project (e.g. with
+the help of `{targets}` package). **Note: there are a few extra steps
+for ‘Linux’ users, who don’t have any ‘Java’ previously installed in
+their system, and who prefer package installation from source, rather
+then installing binaries from ‘Posit Package Manager’. See
 [documentation](https://www.ekotov.pro/rJavaEnv/articles/rJavaEnv.html#note-linux)
 for details.**
 
-``` r
-glue::glue('<script type="application/ld+json">
-      {glue::glue_collapse(readLines("inst/schemaorg.json"), sep = "\n")}
-    </script>')
-```
-
-<script type="application/ld+json">
-      {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "type": "SoftwareSourceCode",
-      "author": {
-        "id": "https://orcid.org/0000-0001-6690-5345"
-      },
-      "codeRepository": "https://github.com/e-kotov/rJavaEnv",
-      "contributor": {
-        "id": "https://orcid.org/0000-0003-1017-7574",
-        "type": "Person",
-        "email": "mavargas11@uc.cl",
-        "familyName": "Vargas",
-        "givenName": "Mauricio"
-      },
-      "copyrightHolder": {
-        "id": "https://orcid.org/0000-0001-6690-5345",
-        "type": "Person",
-        "email": "kotov.egor@gmail.com",
-        "familyName": "Kotov",
-        "givenName": "Egor"
-      },
-      "description": "The 'rJavaEnv' package addresses common issues with 'Java' environment management in 'R' for users of 'Java'/'rJava'-dependent 'R' packages such as 'r5r', 'opentripplanner', 'xlsx', 'openNLP', 'rWeka', 'RJDBC', 'tabulapdf', and many more. It resolves common problems like 'Java' not found, 'Java' version conflicts, missing 'Java' installations, and the inability to install 'Java' due to lack of administrative privileges. 'rJavaEnv' automates the download, installation, and setup of the 'Java Development Kit' ('JDK') on a per-project basis by setting the relevant 'JAVA_HOME' in the current 'R' session or the current working directory (via '.Rprofile', with the user's consent). Similar to what 'renv' does for 'R' packages, 'rJavaEnv' allows different 'Java' versions to be used across different projects, but can also be configured to allow multiple versions within the same project (e.g. with the help of 'targets' package). Note: there are a few extra steps for 'Linux' users, who don't have any 'Java' previously installed in their system, and who prefer package installation from source, rather then installing binaries from 'Posit Package Manager'. See documentation for details.",
-      "license": "https://spdx.org/licenses/MIT",
-      "name": "rJavaEnv: 'Java' Environments for R Projects",
-      "programmingLanguage": {
-        "type": "ComputerLanguage",
-        "name": "R",
-        "url": "https://r-project.org"
-      },
-      "runtimePlatform": "R version 4.4.1 (2024-06-14)",
-      "version": "0.1.1"
-    },
-    {
-      "id": "https://doi.org/10.5281/zenodo.11403010",
-      "type": "SoftwareSourceCode",
-      "author": {
-        "id": "https://orcid.org/0000-0001-6690-5345",
-        "type": "Person",
-        "email": "kotov.egor@gmail.com",
-        "familyName": "Kotov",
-        "givenName": "Egor"
-      },
-      "name": "rJavaEnv: Java Environments for R Projects"
-    }
-  ]
-}
-    </script>
-
 ## Install
+
+Install from CRAN:
+
+``` r
+install.packages('rJavaEnv')
+```
 
 Install latest release from **R-multiverse**:
 
@@ -113,14 +70,14 @@ install.packages('rJavaEnv',
 )
 ```
 
-You can install the development version of `rJavaEnv` from GitHub:
+You can also install the development version of `rJavaEnv` from GitHub:
 
 ``` r
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
 
-remotes::install_github("e-kotov/rJavaEnv")
+remotes::install_github("e-kotov/rJavaEnv", force = TRUE)
 ```
 
 ## Simple Example
@@ -163,6 +120,41 @@ and/or to prevent interruptions in non-interactive mode, you can use the
 rje_consent(provided = TRUE)
 ```
 
+## Using `rJavaEnv` with `targets` and `callr`
+
+Just insert this line into the begining of any script that you run with
+`targets` or `callr`:
+
+``` r
+rJavaEnv::use_java("21")
+```
+
+This acts exactly like `java_quick_install()`, but only sets the
+environment variables in the current session and does not copy or link
+`Java` binaries into the project directory.
+
+More details are in the vignette [Multiple `Java` environments in one
+project with `targets` and
+`callr`](https://www.ekotov.pro/rJavaEnv/articles/multiple-java-with-targets-callr.qmd).
+
+## Cleanup
+
+If you do not want to use `rJavaEnv` anymore, please clear the cache
+folders before removing the package:
+
+``` r
+java_clear("project", delete_all = TRUE)
+java_clear("installed", delete_all = TRUE)
+java_clear("distrib", delete_all = TRUE)
+```
+
+Also, clear the `.Rprofile` file in the projects there you used the
+package:
+
+``` r
+java_env_unset()
+```
+
 ## Functions Overview
 
 The package has several core functions:
@@ -201,6 +193,12 @@ The package has several core functions:
 9.  `java_clear()`
     - Removes all or some `Java` versions linked in the current project
       (or cached distributions or installations).
+10. `use_java()`
+
+- Same as `java_quick_install()`, but in a less intrusive way. Does not
+  copy or link the `Java` installation folder from cache into the
+  project directory and does not create or edit your `.Rprofile` file.
+  Only sets requested java in the current R session.
 
 See more details on all the functions in the
 <a href="https://www.ekotov.pro/rJavaEnv/reference/index.html"
@@ -290,7 +288,8 @@ logo also contains the original R logo.
 To cite package ‘rJavaEnv’ in publications use:
 
 Kotov E (2024). *rJavaEnv: Java Environments for R Projects*.
-doi:10.5281/zenodo.11403010 <https://doi.org/10.5281/zenodo.11403010>,
+doi:10.32614/CRAN.package.rJavaEnv
+<https://doi.org/10.32614/CRAN.package.rJavaEnv>,
 <https://github.com/e-kotov/rJavaEnv>.
 
 BibTeX:
@@ -300,5 +299,5 @@ BibTeX:
       author = {Egor Kotov},
       year = {2024},
       url = {https://github.com/e-kotov/rJavaEnv},
-      doi = {10.5281/zenodo.11403010},
+      doi = {10.32614/CRAN.package.rJavaEnv},
     }

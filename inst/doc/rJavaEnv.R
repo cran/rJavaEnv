@@ -1,11 +1,13 @@
 ## -----------------------------------------------------------------------------
-install.packages("rJavaEnv")
+#| eval: false
+## install.packages("rJavaEnv")
 
 
 ## -----------------------------------------------------------------------------
-install.packages('rJavaEnv',
-  repos = c('https://e-kotov.r-universe.dev', 'https://cloud.r-project.org')
-)
+#| eval: false
+## install.packages('rJavaEnv',
+##   repos = c('https://e-kotov.r-universe.dev', 'https://cloud.r-project.org')
+## )
 
 
 ## -----------------------------------------------------------------------------
@@ -32,4 +34,14 @@ java_env_unset()
 
 ## -----------------------------------------------------------------------------
 java_clear("project", delete_all = TRUE)
+
+
+## -----------------------------------------------------------------------------
+java_clear("project", delete_all = TRUE)
+java_clear("installed", delete_all = TRUE)
+java_clear("distrib", delete_all = TRUE)
+
+
+## -----------------------------------------------------------------------------
+java_env_unset()
 

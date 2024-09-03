@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Multiple Java environments in one project with targets and callr</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+width: 0.8em;
+margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+
+
+
+
+<style type="text/css">body {background-color: #fff;margin: 1em auto;max-width: 700px;overflow: visible;padding-left: 2em;padding-right: 2em;font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 14px;line-height: 1.35;}table {margin: 1em auto;border-width: 1px;border-color: #DDDDDD;border-style: outset;border-collapse: collapse;}table th {border-width: 2px;padding: 5px;border-style: inset;}table td {border-width: 1px;border-style: inset;line-height: 18px;padding: 5px 5px;}table, table th, table td {border-left-style: none;border-right-style: none;}table thead, table tr.even {background-color: #f7f7f7;}p {margin: 0.5em 0;}blockquote {background-color: #f6f6f6;padding: 0.25em 0.75em;}hr {border-style: solid;border: none;border-top: 1px solid #777;margin: 28px 0;}dl {margin-left: 0;}dl dd {margin-bottom: 13px;margin-left: 13px;}dl dt {font-weight: bold;}ul {margin-top: 0;}ul li {list-style: circle outside;}ul ul {margin-bottom: 0;}pre, code {background-color: #f7f7f7;border-radius: 3px;color: #333;white-space: pre-wrap; }pre {border-radius: 3px;margin: 5px 0px 10px 0px;padding: 10px;}pre:not([class]) {background-color: #f7f7f7;}code {font-family: Consolas, Monaco, 'Courier New', monospace;font-size: 85%;}p > code, li > code {padding: 2px 0px;}div.figure {text-align: center;}img {background-color: #FFFFFF;padding: 2px;border: 1px solid #DDDDDD;border-radius: 3px;border: 1px solid #CCCCCC;margin: 0 5px;}h1 {margin-top: 0;font-size: 35px;line-height: 40px;}h2 {border-bottom: 4px solid #f7f7f7;padding-top: 10px;padding-bottom: 2px;font-size: 145%;}h3 {border-bottom: 2px solid #f7f7f7;padding-top: 10px;font-size: 120%;}h4 {border-bottom: 1px solid #f7f7f7;margin-left: 8px;font-size: 105%;}h5, h6 {border-bottom: 1px solid #ccc;font-size: 105%;}a {color: #0033dd;text-decoration: none;}a:hover {color: #6666ff; }a:visited {color: #800080; }a:visited:hover {color: #BB00BB; }a[href^="http:"] {text-decoration: underline; }a[href^="https:"] {text-decoration: underline; }</style>
+</head>
+
+<body>
+
+
+<header id="title-block-header">
+<h1 class="title">Multiple <code>Java</code> environments in one project with <code>targets</code> and <code>callr</code></h1>
+
+</header>
+
+<nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-to-use-use_java" id="toc-how-to-use-use_java">How to use <code>use_java()</code></a></li>
+  <li><a href="#how-to-use-with-targets-and-callr" id="toc-how-to-use-with-targets-and-callr">How to use with <code>targets</code> and <code>callr</code></a></li>
+  </ul>
+</nav>
+<p>If you need to use multiple <code>Java</code> distribution versions in a single project, you can use a handy shortcut function <code>use_java()</code> kindly <a href="https://github.com/e-kotov/rJavaEnv/issues/44" target="_blank">suggested by Hadley Wickham</a>.</p>
+<p>Essentialy, <code>use_java()</code> does the same thing as <code>java_quick_install()</code>, but in a less intrusive way. It downloads the distribution of the user requested major version of <code>Java</code>, unpacks it, also to the cache folder, but unlike <code>java_quick_install()</code>, it does not copy or link the <code>Java</code> installation folder from cache into the project directory and does not create or edit your <code>.Rprofile</code> file. Instead, it just sets the environment in the current R script to the requested <code>Java</code> binaries in the cache folder. The download and unpacking only happens once, so each next run is practically instant, as the function only needs to set the environment in the current R script.</p>
+<h1 id="how-to-use-use_java">How to use <code>use_java()</code></h1>
+<p>Let’s illustrate this with a simple example.</p>
+<p>First, load the package and check the valid major versions of <code>Java</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJavaEnv)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">&quot;rJavaEnv.valid_major_java_versions&quot;</span>)</span></code></pre></div>
+</div>
+<pre><code>[1] &quot;8&quot;  &quot;11&quot; &quot;17&quot; &quot;21&quot; &quot;22&quot;</code></pre>
+<p>Now select any two or three versions and run <code>use_java()</code>, checking every time that correct java was set in the current environment.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_java</span>(<span class="st">&quot;8&quot;</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;8&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_cmd</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;8&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_rjava</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<pre><code>[1] TRUE
+[1] TRUE</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_java</span>(<span class="dv">17</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;17&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_cmd</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;17&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_rjava</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<pre><code>[1] TRUE
+[1] TRUE</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_java</span>(<span class="dv">21</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;21&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_cmd</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;21&quot;</span> <span class="sc">==</span> <span class="fu">java_check_version_rjava</span>(<span class="at">quiet =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<pre><code>[1] TRUE
+[1] TRUE</code></pre>
+<p>You probably had to wait for a bit for the Java distribution to be downloaded and unpacked.</p>
+<p>However, now if you repeat the same commands, you will see that the correct <code>Java</code> version is set instantly, as downloading and unpacking are skipped.</p>
+<h1 id="how-to-use-with-targets-and-callr">How to use with <code>targets</code> and <code>callr</code></h1>
+<p>Both <a href="https://docs.ropensci.org/targets/" target="_blank"><code>{targets}</code></a> and <a href="https://callr.r-lib.org/" target="_blank"><code>{callr}</code></a> packages allow the user to run any R scripts in clean separate R sessions. This essentially allows the user to run multiple versions of <code>Java</code> in one project with <code>targets</code> and <code>callr</code>, mostly overcoming the issue of manually switching between <code>Java</code> versions in one project.</p>
+<p>One simple thing you can do if one of the scripts needs Java 8, and another one needs Java 17, is to insert <code>use_java()</code> in beginning of the scripts that you run through <code>targets</code> or <code>callr</code> like so:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJavaEnv)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">use_java</span>(<span class="st">&quot;17&quot;</span>)</span></code></pre></div>
+</div>
+<p>Or:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>rJavaEnv<span class="sc">::</span><span class="fu">use_java</span>(<span class="st">&quot;17&quot;</span>)</span></code></pre></div>
+</div>
+<p>The first run of such script will have to go through the the process of downloading and unpacking the <code>Java</code> distribution. The second run will not need to download and unpacking and will be instant.</p>
+<p>If you need the runs to be instant from the first attempt, you can predownload and pre-install <code>Java</code> into cache folders using:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>java_17_distrib <span class="ot">&lt;-</span> <span class="fu">java_download</span>(<span class="st">&quot;17&quot;</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">java_unpack</span>(java_17_distrib)</span></code></pre></div>
+</div>
+
+
+
+
+
+</body></html>

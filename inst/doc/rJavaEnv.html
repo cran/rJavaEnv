@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -101,10 +101,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 </header>
 
 
-<p>This guide will walk you through downloading, installing, and managing <code>Java</code> environments for your R projects using the <code>rJavaEnv</code> package. We’ll cover setting up the environment, un-setting it, managing distributions, installing <code>Java</code>, and checking <code>Java</code> versions.</p>
+<p>This guide will walk you through downloading, installing, and managing <code>Java</code> environments for your R projects using the <code>rJavaEnv</code> package. We’ll cover setting up the environment, un-setting it, managing distributions, installing <code>Java</code>, and checking <code>Java</code> versions. For more advanced use refer to the vignettes on <a href="rJavaEnv-step-by-step.qmd">step-by-step fine-grained procedure to download, unpack, install and linke <code>Java</code></a> and <a href="multiple-java-with-targets-callr.qmd">vignette on using <code>rJavaEnv</code> with the <code>targets</code> and <code>callr</code> packages to manage multiple <code>Java</code> environments</a></p>
 <h3 id="quickly-download-and-install-java">1. Quickly Download and Install Java</h3>
 <h4 id="install-rjavaenv"><strong>Install <code>rJavaEnv</code></strong></h4>
-<p>Install <code>rJavaEnv</code> from CRAN (once available):</p>
+<p>Install <code>rJavaEnv</code> from CRAN:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rJavaEnv&quot;</span>)</span></code></pre></div>
 </div>
@@ -179,7 +179,6 @@ mixed mode, sharing)&quot;
 </div>
 <p>Example expected output (on a Windows machine):</p>
 <pre><code>Removed JAVA_HOME settings from .Rprofile in &#39;C:/Users/user_name/AppData/Local/Temp/75/RtmpuoG3xJ/.Rprofile&#39;</code></pre>
-<p>Now restart the current <code>R</code> session so that <code>R</code> picks up the system <code>Java</code> (or no <code>Java</code>, if it is not installed in the system).</p>
 <h4 id="delete-java-from-the-project-directory">Delete <code>Java</code> from the project directory</h4>
 <p>The line below clears all <code>Java</code> installations in the project directory:</p>
 <div class="cell">
@@ -187,6 +186,19 @@ mixed mode, sharing)&quot;
 </div>
 <p>Example expected output:</p>
 <pre><code>All Java symlinks in the project have been cleared.</code></pre>
+<p>Now restart the current <code>R</code> session so that <code>R</code> picks up the system <code>Java</code> (or no <code>Java</code>, if it is not installed in the system).</p>
+<h3 id="complete-cleanup">4. Complete Cleanup</h3>
+<p>If you do not want to use <code>rJavaEnv</code> anymore, please clear the cache folders before removing the package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_clear</span>(<span class="st">&quot;project&quot;</span>, <span class="at">delete_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">java_clear</span>(<span class="st">&quot;installed&quot;</span>, <span class="at">delete_all =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">java_clear</span>(<span class="st">&quot;distrib&quot;</span>, <span class="at">delete_all =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+</div>
+<p>Also, clear the <code>.Rprofile</code> file in the projects there you used the package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">java_env_unset</span>()</span></code></pre></div>
+</div>
+<p>Now you can remove the package and restart the current <code>R</code> session so that <code>R</code> picks up the system <code>Java</code> (or no <code>Java</code>, if it is not installed in the system).</p>
 
 
 

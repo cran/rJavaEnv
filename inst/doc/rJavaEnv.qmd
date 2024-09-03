@@ -1,30 +1,30 @@
 ---
 title: "Quick Start Guide: `Java` Setup for 'R' Projects"
-output:
-  rmarkdown::html_vignette:
-    code-fold: false
-    code-overflow: wrap
 vignette: >
   %\VignetteIndexEntry{Quick Start Guide: `Java` Setup for 'R' Projects}
   %\VignetteEngine{quarto::html}
   %\VignetteEncoding{UTF-8}
 execute:
   eval: false
-pkgdown:
-  as_is: true
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    code-overflow: wrap
 ---
 
-This guide will walk you through downloading, installing, and managing `Java` environments for your R projects using the `rJavaEnv` package. We'll cover setting up the environment, un-setting it, managing distributions, installing `Java`, and checking `Java` versions.
 
+This guide will walk you through downloading, installing, and managing `Java` environments for your R projects using the `rJavaEnv` package. We'll cover setting up the environment, un-setting it, managing distributions, installing `Java`, and checking `Java` versions. For more advanced use refer to the vignettes on [step-by-step fine-grained procedure to download, unpack, install and linke `Java`](rJavaEnv-step-by-step.qmd) and [vignette on using `rJavaEnv` with the `targets` and `callr` packages to manage multiple `Java` environments](multiple-java-with-targets-callr.qmd)
 
 ### 1. Quickly Download and Install Java
 
 #### **Install `rJavaEnv`**
 
-Install `rJavaEnv` from CRAN (once available):
+Install `rJavaEnv` from CRAN:
 
 
 ```{r}
+#| eval: false
 install.packages("rJavaEnv")
 ```
 
@@ -32,6 +32,7 @@ install.packages("rJavaEnv")
 Or install the latest version of `rJavaEnv` from R universe:
 
 ```{r}
+#| eval: false
 install.packages('rJavaEnv',
   repos = c('https://e-kotov.r-universe.dev', 'https://cloud.r-project.org')
 )
@@ -142,7 +143,7 @@ Example expected output (on a Windows machine):
 Removed JAVA_HOME settings from .Rprofile in 'C:/Users/user_name/AppData/Local/Temp/75/RtmpuoG3xJ/.Rprofile'
 ```
 
-Now restart the current `R` session so that `R` picks up the system `Java` (or no `Java`, if it is not installed in the system).
+
 
 #### Delete `Java` from the project directory
 
@@ -158,3 +159,24 @@ Example expected output:
 ```
 All Java symlinks in the project have been cleared.
 ```
+
+Now restart the current `R` session so that `R` picks up the system `Java` (or no `Java`, if it is not installed in the system).
+
+### 4. Complete Cleanup
+
+If you do not want to use `rJavaEnv` anymore, please clear the cache folders before removing the package:
+
+```{r}
+java_clear("project", delete_all = TRUE)
+java_clear("installed", delete_all = TRUE)
+java_clear("distrib", delete_all = TRUE)
+```
+
+Also, clear the `.Rprofile` file in the projects there you used the package:
+
+```{r}
+java_env_unset()
+```
+
+
+Now you can remove the package and restart the current `R` session so that `R` picks up the system `Java` (or no `Java`, if it is not installed in the system).

@@ -8,7 +8,13 @@ setwd(project_dir)
 
 
 ## -----------------------------------------------------------------------------
-options(rJavaEnv.cache_path = "/path/to/your/desired/cache/folder")
+#| eval: false
+## options(rJavaEnv.cache_path = "/path/to/your/desired/cache/folder")
+
+
+## -----------------------------------------------------------------------------
+#| include: false
+options(rJavaEnv.cache_path = tempdir()) # does that fix the error on r-oldrel-macos-arm64 and r-oldrel-macos-x86_64?
 
 
 ## -----------------------------------------------------------------------------
@@ -53,6 +59,10 @@ java_install(
 
 
 ## -----------------------------------------------------------------------------
+java_home <- java_unpack(java_distr_path = java_8_distr)
+
+
+## -----------------------------------------------------------------------------
 java_install(
   java_distrib_path = java_8_distr,
   autoset_java_env = TRUE)
@@ -82,4 +92,14 @@ java_env_set(where = "both", java_home = java_home_17)
 ## -----------------------------------------------------------------------------
 java_check_version_cmd() # for pacakges that use Java via commandline, like opentripplanner
 java_check_version_rjava() # for packages that use Java via `rJava`, like r5r
+
+
+## -----------------------------------------------------------------------------
+java_clear("project", delete_all = TRUE)
+java_clear("installed", delete_all = TRUE)
+java_clear("distrib", delete_all = TRUE)
+
+
+## -----------------------------------------------------------------------------
+java_env_unset()
 
