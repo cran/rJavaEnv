@@ -1,12 +1,12 @@
-1ed830ff6bca3f6a0c58691a73554856 *DESCRIPTION
+1909bf00d015161d1ec501e00860ab6f *DESCRIPTION
 02fd7f3726ce7a54bba6011ee5aef28c *LICENSE
-410fcf16365e9316174f57c92c9f3ef8 *NAMESPACE
-5b7e4d51b2c8aad9529162b3a29870dc *NEWS.md
+ab4de05b4f92bdcb16becd9e593df6a6 *NAMESPACE
+1e66ae62513a01009205dfd6d2629675 *NEWS.md
 58a0af5888c7886081af7fb636b162ce *R/consent.R
 e849e49a4a13ff7eb5b1b395af9ca771 *R/global_params.R
 70fe4284a9232b8f1b08d999561cd8d1 *R/internal_utilities.R
 c4b6576971ceea2a3ee181c35eb99947 *R/java_download.R
-0b3122fc0bb844f91f06e96b1cd556f8 *R/java_env.R
+58ca9077d9440f3016dd6b1b5327e289 *R/java_env.R
 d545a31ca267f3e17603807570e55083 *R/java_install.R
 af58eeadf255c51023881c72fc42388e *R/java_manage.R
 eefa4676c665e2220935893acd2ebf71 *R/java_manage_distrib_cache.R
@@ -17,7 +17,7 @@ f001c30c9c5681d13445bd33f64c10f3 *R/java_quick_install.R
 830ac9265f1c4ea861fff06e59b23385 *R/onLoad.R
 5e0b1f2faf56d7a478c0526d4ac12ac8 *R/rJavaEnv-package.R
 17c00befe8c23ad44f26c2f17c20e914 *R/use_java.R
-e0c74cf005a826f9f1ff1cf4ae4f4139 *README.md
+1372d423ac5e2b7ad0253b43835e7e60 *README.md
 b525f306ebb808091b192284a1107eb7 *build/vignette.rds
 68eecca874566714d9a28b85007f870f *inst/CITATION
 49fb275f4f066e30bd3e393efb71d264 *inst/doc/multiple-java-with-targets-callr.R
@@ -31,7 +31,7 @@ cd5e6ffff0a620757f7cb056832f96dc *inst/doc/rJavaEnv.R
 d31783c2fda8d6471fcd1452047572c5 *inst/doc/rJavaEnv.qmd
 1a2fbfb81b389f6c034d0110d6bc40ce *inst/extdata/java_urls.json
 e41ab2fc9d9f38323c8d5a80ac28d4e3 *inst/resources/consent-info
-c044a0301ad30f57af49a119fc258ae2 *inst/schemaorg.json
+b697498e65296cd5a28695cc92a87223 *inst/schemaorg.json
 3a38f93eae447568ec0b616f9861f54c *man/figures/logo.png
 578facc568566027dac9541b48694f2e *man/global_quiet_param.Rd
 417c6c3ff6a7cecab6520e5f1ac2a57a *man/java_check_version_cmd.Rd
