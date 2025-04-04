@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -115,9 +115,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 <p>First, load the package and check the valid major versions of <code>Java</code>:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rJavaEnv)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">getOption</span>(<span class="st">&quot;rJavaEnv.valid_major_java_versions&quot;</span>)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">java_valid_versions</span>()</span></code></pre></div>
 </div>
-<pre><code>[1] &quot;8&quot;  &quot;11&quot; &quot;17&quot; &quot;21&quot; &quot;22&quot;</code></pre>
+<pre><code>[1] &quot;8&quot;  &quot;11&quot; &quot;15&quot; &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;20&quot; &quot;21&quot; &quot;22&quot; &quot;23&quot; &quot;24&quot;</code></pre>
+<div>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>The available versions of <code>Java</code> depend on your OS and architecture, so you might see a shorter list on your system.</p>
+</blockquote>
+</div>
 <p>Now select any two or three versions and run <code>use_java()</code>, checking every time that correct java was set in the current environment.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">use_java</span>(<span class="st">&quot;8&quot;</span>)</span>

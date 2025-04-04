@@ -11,11 +11,12 @@ java_download(
   platform = platform_detect()$os,
   arch = platform_detect()$arch,
   quiet = FALSE,
+  force = FALSE,
   temp_dir = FALSE
 )
 }
 \arguments{
-\item{version}{\code{Integer} or \code{character} vector of length 1 for major version of Java to download or install. If not specified, defaults to the latest LTS version. Can be "8", "11", "17", "21", "22", or 8, 11, 17, 21, or 22.}
+\item{version}{\code{Integer} or \code{character} vector of length 1 for major version of Java to download or install. If not specified, defaults to the latest LTS version. Can be "8", and "11" to "24" (or the same version numers in \code{integer}) or any newer version if it is available for the selected distribution. For \code{macOS} on \code{aarch64} architecture (Apple Silicion) certain \code{Java} versions are not available.}
 
 \item{distribution}{The Java distribution to download. If not specified, defaults to "Amazon Corretto". Currently only \href{https://aws.amazon.com/corretto/}{"Amazon Corretto"} is supported.}
 
@@ -26,6 +27,8 @@ java_download(
 \item{arch}{The architecture for which to download the Java distribution. Defaults to the current architecture.}
 
 \item{quiet}{A \code{logical} value indicating whether to suppress messages. Can be \code{TRUE} or \code{FALSE}.}
+
+\item{force}{A logical. Whether the distribution file should be overwritten or not. Defaults to \code{FALSE}.}
 
 \item{temp_dir}{A logical. Whether the file should be saved in a temporary directory. Defaults to \code{FALSE}.}
 }

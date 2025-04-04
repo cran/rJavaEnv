@@ -9,7 +9,7 @@ setwd(project_dir)
 
 ## -----------------------------------------------------------------------------
 #| eval: false
-## options(rJavaEnv.cache_path = "/path/to/your/desired/cache/folder")
+# options(rJavaEnv.cache_path = "/path/to/your/desired/cache/folder")
 
 
 ## -----------------------------------------------------------------------------

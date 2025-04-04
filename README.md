@@ -62,7 +62,14 @@ Install from CRAN:
 install.packages('rJavaEnv')
 ```
 
-Install latest release from **R-multiverse**:
+<details>
+
+<summary>
+
+Install the development version
+</summary>
+
+Install the latest release development version from **R-multiverse**:
 
 ``` r
 install.packages('rJavaEnv',
@@ -70,15 +77,18 @@ install.packages('rJavaEnv',
 )
 ```
 
-You can also install the development version of `rJavaEnv` from GitHub:
+You can also install the development version of `rJavaEnv` directly from
+GitHub:
 
 ``` r
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
 
-remotes::install_github("e-kotov/rJavaEnv@dev", force = TRUE)
+remotes::install_github("e-kotov/rJavaEnv", force = TRUE)
 ```
+
+</details>
 
 ## Simple Example
 
@@ -135,7 +145,7 @@ environment variables in the current session and does not copy or link
 
 More details are in the vignette [Multiple `Java` environments in one
 project with `targets` and
-`callr`](https://www.ekotov.pro/rJavaEnv/articles/multiple-java-with-targets-callr.qmd).
+`callr`](https://www.ekotov.pro/rJavaEnv/articles/multiple-java-with-targets-callr.html).
 
 ## Cleanup
 
@@ -193,7 +203,13 @@ The package has several core functions:
 9.  `java_clear()`
     - Removes all or some `Java` versions linked in the current project
       (or cached distributions or installations).
-10. `use_java()`
+
+10 `java_valid_versions()` \* Lists all valid major `Java` versions that
+can be downloaded and installed for either current automatically
+detected OS and CPU architecture or user-specified platform and
+architecture.
+
+11. `use_java()`
 
 - Same as `java_quick_install()`, but in a less intrusive way. Does not
   copy or link the `Java` installation folder from cache into the
@@ -211,12 +227,13 @@ in progress).
 ## Limitations
 
 Currently, `rJavaEnv` only supports major `Java` versions such as 8, 11,
-17, 21, 22. The download and install functions ignore the minor version
-of the `Java` distribution and just downloads the latest stable
-subversion of the specified major version. This is done to simplify the
-process and avoid the need to update the package every time a new minor
-version of `Java` is released. For most users this should be sufficient,
-but this is substandard for full reproducibility.
+15 to 24 and any newer version. The download and install functions
+ignore the minor version of the `Java` distribution and just downloads
+the latest stable subversion of the specified major version. This is
+done to simplify the process and avoid the need to update the package
+every time a new minor version of `Java` is released. For most users
+this should be sufficient, but this is substandard for full
+reproducibility.
 
 The main limitation is that if you want to switch to another `Java`
 environment, you will most likely have to restart the current R session

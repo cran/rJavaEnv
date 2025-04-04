@@ -1,13 +1,13 @@
 ## -----------------------------------------------------------------------------
 #| eval: false
-## install.packages("rJavaEnv")
+# install.packages("rJavaEnv")
 
 
 ## -----------------------------------------------------------------------------
 #| eval: false
-## install.packages('rJavaEnv',
-##   repos = c('https://e-kotov.r-universe.dev', 'https://cloud.r-project.org')
-## )
+# install.packages('rJavaEnv',
+#   repos = c('https://e-kotov.r-universe.dev', 'https://cloud.r-project.org')
+# )
 
 
 ## -----------------------------------------------------------------------------
